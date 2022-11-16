@@ -1,15 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import { Input } from "./LoginStyle";
-import { Button } from "./LoginStyle";
-import { Main } from "./LoginStyle";
+import { Input } from "./RegisterStyle";
+import { Button } from "./RegisterStyle";
+import { Main } from "./RegisterStyle";
 
-function LoginPage() {
+function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [passworderror, setPasswordError] = useState(false);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [emailError, setEmailError] = useState(false);
 
   let navigate = useNavigate();
@@ -19,9 +21,18 @@ function LoginPage() {
     const body = {
       email,
       password,
+      confirmPassword,
     };
-    if (password.length < 6) {
-      setPasswordError(true);
+    if (
+      emailError ||
+      passworderror ||
+      confirmPasswordError ||
+      email === "" ||
+      password === "" ||
+      confirmPassword === ""
+    ) {
+      alert("Corrija os dados");
+      return;
     }
   }
 
@@ -29,14 +40,17 @@ function LoginPage() {
     <div className="container black">
       <Main>
         <h1>Ng.Ca$h</h1>
-        <h2>Faça seu login!</h2>
+        <h2>Faça seu cadastro!</h2>
         <form onSubmit={signUp}>
           <div className="input-group">
             <Input
               type="email"
               placeholder="E-mail"
               onChange={(e: any) => {
-                if (!/\S+@\S+\.\S+/.test(e.target.value)) {
+                if (
+                  !/\S+@\S+\.\S+/.test(e.target.value) &&
+                  e.target.value !== ""
+                ) {
                   setEmailError(true);
                 } else {
                   setEmailError(false);
@@ -51,12 +65,13 @@ function LoginPage() {
               ""
             )}
           </div>
+
           <div className="input-group">
             <Input
               type="password"
               placeholder="Senha"
               onChange={(e: any) => {
-                if (e.target.value.length < 6) {
+                if (e.target.value.length < 6 && e.target.value !== "") {
                   setPasswordError(true);
                 } else {
                   setPasswordError(false);
@@ -73,16 +88,38 @@ function LoginPage() {
               ""
             )}
           </div>
+
+          <div className="input-group">
+            <Input
+              type="password"
+              placeholder="Confirme sua senha"
+              onChange={(e: any) => {
+                if (e.target.value !== password) {
+                  setConfirmPasswordError(true);
+                } else {
+                  setConfirmPasswordError(false);
+                }
+                setConfirmPassword(e.target.value);
+              }}
+              value={confirmPassword}
+            />
+            {confirmPasswordError ? (
+              <p className="error-message">As senhas devem ser iguais</p>
+            ) : (
+              ""
+            )}
+          </div>
+
           <div className="button-box">
-            <Button>Entrar</Button>
+            <Button>Cadastrar</Button>
           </div>
         </form>
-        <p className="form-link" onClick={() => navigate("/cadastro")}>
-          Primeira vez? Cadastre-se!
+        <p className="form-link" onClick={() => navigate("/")}>
+          Já tem uma conta? Faça seu login!
         </p>
       </Main>
     </div>
   );
 }
 
-export default LoginPage;
+export default RegisterPage;

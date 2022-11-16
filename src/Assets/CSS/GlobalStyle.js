@@ -65,6 +65,16 @@ table {
 .black{
 	background-color: #000000;
 }
+
+.form-link {
+    color: #ffffff;
+    font-weight: bold;
+
+    margin-top: 40px;
+
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;
 
 export default GlobalStyle;
