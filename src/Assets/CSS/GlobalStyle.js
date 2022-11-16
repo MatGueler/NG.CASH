@@ -6,7 +6,7 @@ html, body, #root {
 	height: 100vh;
 	margin: 0;
 	padding: 0;
-	background-color: #d9d9d9;
+	background-color: #ffffff;
 	color: #000000;
 }
 html, body, div, span, applet, object, iframe,
@@ -38,9 +38,6 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-ol, ul {
-	list-style: none;
-}
 blockquote, q {
 	quotes: none;
 }
@@ -59,7 +56,6 @@ table {
 .container{
 	width: 100%;
 	height: 100%;
-	position: absolute;
 }
 
 .black{
