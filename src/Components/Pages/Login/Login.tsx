@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import { Input } from "./LoginStyle";
+import { BsFillInfoSquareFill } from "react-icons/bs";
+
+import { Infos, Input } from "./LoginStyle";
 import { Button } from "./LoginStyle";
 import { Main } from "./LoginStyle";
 
@@ -27,6 +29,9 @@ function LoginPage() {
 
   return (
     <div className="container black">
+      <Infos onClick={() => navigate("/sobre")}>
+        <BsFillInfoSquareFill />
+      </Infos>
       <Main>
         <h1>Ng.Ca$h</h1>
         <h2>Faça seu login!</h2>

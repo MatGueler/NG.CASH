@@ -1,5 +1,17 @@
 import styled from "styled-components";
 
+export const Infos = styled.div`
+  position: fixed;
+  right: 30px;
+  top: 30px;
+  cursor: pointer;
+
+  svg {
+    font-size: 3em;
+    color: #ffffff;
+  }
+`;
+
 export const Button = styled.button`
   width: 100%;
   height: 45px;

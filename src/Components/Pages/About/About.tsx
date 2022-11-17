@@ -14,7 +14,6 @@ function AboutPage() {
         </Button>
         <Main>
           <h1>Ng.Ca$h</h1>
-
           <ul>
             <li>Somos a carteira digital da Nova Geração.</li>
             <li>

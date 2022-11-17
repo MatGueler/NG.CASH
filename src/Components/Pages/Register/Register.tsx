@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+import { BsFillInfoSquareFill } from "react-icons/bs";
+
 import { Input } from "./RegisterStyle";
 import { Button } from "./RegisterStyle";
 import { Main } from "./RegisterStyle";
+import { Infos } from "../Login/LoginStyle";
 
 function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -38,6 +41,9 @@ function RegisterPage() {
 
   return (
     <div className="container black">
+      <Infos onClick={() => navigate("/sobre")}>
+        <BsFillInfoSquareFill />
+      </Infos>
       <Main>
         <h1>Ng.Ca$h</h1>
         <h2>Faça seu cadastro!</h2>
