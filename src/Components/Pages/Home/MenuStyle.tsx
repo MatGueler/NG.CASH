@@ -35,4 +35,10 @@ export const Main = styled.div`
 
     margin: 20px;
   }
+
+  .actions-box {
+    width: 60%;
+    display: flex;
+    box-sizing: border-box;
+  }
 `;
