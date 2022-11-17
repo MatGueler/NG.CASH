@@ -71,6 +71,20 @@ table {
     text-decoration: underline;
     cursor: pointer;
   }
+
+    .button-box {
+    width: 50%;
+    height: 45px;
+    position: relative;
+    background-color: black;
+
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+  }
+
+  .button-box :hover {
+    transform: translate(2px, 2px);
+  }
 `;
 
 export default GlobalStyle;
