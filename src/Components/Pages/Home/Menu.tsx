@@ -13,16 +13,17 @@ function MenuPage() {
       <HeaderComponent />
       <Main>
         <div className="balance-box">
+          <h2>Meu saldo:</h2>
           <p className="">R$ Balanço</p>
         </div>
         <div className="actions-box">
           <ButtonComponent
             textButton="Transações"
-            function={() => navigate("/transações")}
+            function={() => navigate("/transacoes")}
           />
           <ButtonComponent
             textButton="Solicitar"
-            function={() => navigate("/transações/nova")}
+            function={() => navigate("/transacoes/nova")}
           />
         </div>
       </Main>

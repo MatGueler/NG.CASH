@@ -41,6 +41,7 @@ export const Main = styled.div`
     height: 20em;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -50,8 +51,12 @@ export const Main = styled.div`
 
     background-color: #ffffff;
 
+    * {
+      color: #000000;
+    }
+
     p {
-      max-width: 90%;
+      max-width: 85%;
       height: 60px;
 
       display: flex;
@@ -62,7 +67,6 @@ export const Main = styled.div`
       white-space: nowrap;
 
       font-size: 30px;
-      color: #000000;
 
       border: 2px solid #000000;
       border-radius: 5px;

@@ -2,7 +2,10 @@ import { Button } from "./ButtonStyle";
 
 function ButtonComponent(props: any) {
   return (
-    <div className="button-box" onClick={() => props.function()}>
+    <div
+      className="button-box"
+      onClick={props.function !== "" ? props.function : ""}
+    >
       <Button>{props.textButton}</Button>
     </div>
   );
