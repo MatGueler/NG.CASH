@@ -36,6 +36,17 @@ export const Main = styled.div`
     margin: 20px;
   }
 
+  .balance-box {
+    width: 20em;
+    height: 20em;
+
+    margin: 20px;
+
+    border-radius: 50%;
+
+    background-color: #ffffff;
+  }
+
   .actions-box {
     width: 60%;
     display: flex;

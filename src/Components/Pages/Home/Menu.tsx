@@ -14,10 +14,10 @@ function MenuPage() {
   return (
     <div className="container black">
       <HeaderComponent />
-      <Infos onClick={() => navigate("/sobre")}>
-        <BsFillInfoSquareFill />
-      </Infos>
       <Main>
+        <div className="balance-box">
+          <p>R$ Balanço</p>
+        </div>
         <div className="actions-box">
           <ButtonComponent textButton="Transação" />
           <ButtonComponent textButton="Solicitar" />

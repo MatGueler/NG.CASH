@@ -80,6 +80,8 @@ table {
 
     border-radius: 5px;
     border: 1px solid #ffffff;
+
+	margin: 20px;
   }
 
   .button-box :hover {
