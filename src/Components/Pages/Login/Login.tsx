@@ -4,8 +4,8 @@ import { useState } from "react";
 import { BsFillInfoSquareFill } from "react-icons/bs";
 
 import { Infos, Input } from "./LoginStyle";
-import { Button } from "./LoginStyle";
 import { Main } from "./LoginStyle";
+import ButtonComponent from "../../Button/Button";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -78,9 +78,7 @@ function LoginPage() {
               ""
             )}
           </div>
-          <div className="button-box">
-            <Button>Entrar</Button>
-          </div>
+          <ButtonComponent textButton="Entrar" />
         </form>
         <p className="form-link" onClick={() => navigate("/cadastro")}>
           Primeira vez? Cadastre-se!

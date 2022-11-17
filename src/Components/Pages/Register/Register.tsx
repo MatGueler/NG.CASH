@@ -4,9 +4,9 @@ import { useState } from "react";
 import { BsFillInfoSquareFill } from "react-icons/bs";
 
 import { Input } from "./RegisterStyle";
-import { Button } from "./RegisterStyle";
 import { Main } from "./RegisterStyle";
 import { Infos } from "../Login/LoginStyle";
+import ButtonComponent from "../../Button/Button";
 
 function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -116,9 +116,7 @@ function RegisterPage() {
             )}
           </div>
 
-          <div className="button-box">
-            <Button>Cadastrar</Button>
-          </div>
+          <ButtonComponent textButton="Cadastrar" />
         </form>
         <p className="form-link" onClick={() => navigate("/")}>
           Já tem uma conta? Faça seu login!
