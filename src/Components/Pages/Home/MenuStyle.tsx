@@ -54,28 +54,30 @@ export const Main = styled.div`
     * {
       color: #000000;
     }
+  }
+
+  .balance-value {
+    max-width: 75%;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px;
+
+    white-space: nowrap;
+
+    border: 2px solid #000000;
+    border-radius: 5px;
+
+    overflow-x: scroll;
+
+    box-shadow: 0px 2px 5px black;
+    background-color: #e6e6e6;
 
     p {
-      max-width: 85%;
-      height: 60px;
-
-      display: flex;
-      align-items: center;
-
-      padding: 10px;
-
-      white-space: nowrap;
-
-      font-size: 30px;
-
-      border: 2px solid #000000;
-      border-radius: 5px;
-
-      overflow-x: scroll;
-
-      box-shadow: 0px 2px 5px black;
+      font-size: 35px;
       box-sizing: border-box;
-      background-color: #e6e6e6;
     }
   }
 

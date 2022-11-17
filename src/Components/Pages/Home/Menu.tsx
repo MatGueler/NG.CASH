@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import { Main } from "./MenuStyle";
 import ButtonComponent from "../../Button/Button";
 import HeaderComponent from "../../Header/Header";
+import HideInformationContext from "../../../Contexts/HideInformation";
 
 function MenuPage() {
   let navigate = useNavigate();
+
+  const HideContext = useContext(HideInformationContext);
 
   return (
     <div className="container black">
@@ -14,7 +17,9 @@ function MenuPage() {
       <Main>
         <div className="balance-box">
           <h2>Meu saldo:</h2>
-          <p className="">R$ Balanço</p>
+          <div className="balance-value">
+            <p className={HideContext?.visibleInfo ? "" : "blur"}>R$ 4500000</p>
+          </div>
         </div>
         <div className="actions-box">
           <ButtonComponent

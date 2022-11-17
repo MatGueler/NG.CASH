@@ -89,7 +89,7 @@ table {
   }
 
 	.blur {
-    filter: blur(5px);
+    filter: blur(8px);
   }
 `;
 
