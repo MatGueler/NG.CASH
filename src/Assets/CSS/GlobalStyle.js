@@ -84,8 +84,12 @@ table {
 	margin: 20px;
   }
 
-  .button-box :hover {
+	.button-box :hover {
     transform: translate(2px, 2px);
+  }
+
+	.blur {
+    filter: blur(5px);
   }
 `;
 

@@ -40,11 +40,39 @@ export const Main = styled.div`
     width: 20em;
     height: 20em;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     margin: 20px;
 
     border-radius: 50%;
 
     background-color: #ffffff;
+
+    p {
+      max-width: 90%;
+      height: 60px;
+
+      display: flex;
+      align-items: center;
+
+      padding: 10px;
+
+      white-space: nowrap;
+
+      font-size: 30px;
+      color: #000000;
+
+      border: 2px solid #000000;
+      border-radius: 5px;
+
+      overflow-x: scroll;
+
+      box-shadow: 0px 2px 5px black;
+      box-sizing: border-box;
+      background-color: #e6e6e6;
+    }
   }
 
   .actions-box {

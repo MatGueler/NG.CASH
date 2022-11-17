@@ -14,38 +14,46 @@ export const HeaderBox = styled.div`
 
   background-color: #ffffff;
 
+  * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    margin: 0 10px;
+    font-family: "Saira Stencil One", cursive;
+    font-size: 2em;
+    color: #000000;
+  }
+
   h2 {
-    font-size: 25px;
+    font-size: 15px;
     margin: 0 10px;
   }
 
   .date-box {
     width: 30%;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     svg {
+      cursor: pointer;
       font-size: 30px;
+    }
+
+    h2 {
+      font-size: 25px;
+      margin: 0 10px;
     }
   }
 
   .salutation-box {
     width: 30%;
-
-    display: flex;
-    justify-content: center;
   }
 
   .actions-box {
     width: 30%;
 
-    display: flex;
-    justify-content: center;
-
     h2 {
-      font-size: 15px;
       cursor: pointer;
     }
   }

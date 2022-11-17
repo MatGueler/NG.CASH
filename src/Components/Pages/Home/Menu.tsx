@@ -1,9 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import { BsFillInfoSquareFill } from "react-icons/bs";
-
-import { Infos } from "./MenuStyle";
 import { Main } from "./MenuStyle";
 import ButtonComponent from "../../Button/Button";
 import HeaderComponent from "../../Header/Header";
@@ -16,11 +13,17 @@ function MenuPage() {
       <HeaderComponent />
       <Main>
         <div className="balance-box">
-          <p>R$ Balanço</p>
+          <p className="">R$ Balanço</p>
         </div>
         <div className="actions-box">
-          <ButtonComponent textButton="Transação" />
-          <ButtonComponent textButton="Solicitar" />
+          <ButtonComponent
+            textButton="Transações"
+            function={() => navigate("/transações")}
+          />
+          <ButtonComponent
+            textButton="Solicitar"
+            function={() => navigate("/transações/nova")}
+          />
         </div>
       </Main>
     </div>

@@ -1,9 +1,9 @@
 import { Button } from "./ButtonStyle";
 
-function ButtonComponent({ textButton }: { textButton: string }) {
+function ButtonComponent(props: any) {
   return (
-    <div className="button-box">
-      <Button>{textButton}</Button>
+    <div className="button-box" onClick={() => props.function()}>
+      <Button>{props.textButton}</Button>
     </div>
   );
 }
