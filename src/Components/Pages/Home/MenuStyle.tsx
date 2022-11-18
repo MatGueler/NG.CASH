@@ -45,7 +45,7 @@ export const Main = styled.div`
     justify-content: center;
     align-items: center;
 
-    margin: 20px;
+    margin: 0 0 80px 0;
 
     border-radius: 50%;
 

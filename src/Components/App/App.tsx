@@ -8,6 +8,7 @@ import RegisterPage from "../Pages/Register/Register";
 import TransactionsPage from "../Pages/Transactions/Transactions";
 
 import { HideInformationProvider } from "../../Contexts/HideInformation";
+import HistoryPage from "../Pages/History/History";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path={"/"} element={<LoginPage />} />
             <Route path={"/cadastro"} element={<RegisterPage />} />
             <Route path={"/menu"} element={<MenuPage />} />
+            <Route path={"/transacoes"} element={<HistoryPage />} />
             <Route path={"/transacoes/nova"} element={<TransactionsPage />} />
             <Route path={"/sobre"} element={<AboutPage />} />
           </Routes>
