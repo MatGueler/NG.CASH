@@ -22,7 +22,6 @@ function HeaderComponent() {
         <div className="salutation-box">
           <h1>NG.CASH</h1>
           <h2 className={HideContext?.visibleInfo ? "" : "blur"}>
-            {" "}
             Ola, Fulana(o)
           </h2>
         </div>

@@ -5,7 +5,7 @@ import AboutPage from "../Pages/About/About";
 import MenuPage from "../Pages/Home/Menu";
 import LoginPage from "../Pages/Login/Login";
 import RegisterPage from "../Pages/Register/Register";
-import TransactionsPage from "../Pages/Transactions/Transactions";
+import TransactionsPage from "../Pages/Transaction/Transaction";
 
 import { HideInformationProvider } from "../../Contexts/HideInformation";
 import HistoryPage from "../Pages/History/History";

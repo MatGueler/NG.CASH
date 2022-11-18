@@ -38,6 +38,12 @@ export const Main = styled.div`
     margin-bottom: 50px;
   }
 
+  h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin-bottom: 50px;
+  }
+
   form {
     width: 60%;
 
