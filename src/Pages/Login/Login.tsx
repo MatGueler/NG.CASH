@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import api from "../../Services/Api";
 
@@ -8,10 +8,15 @@ import { BsFillInfoSquareFill } from "react-icons/bs";
 import { Infos, Input } from "./LoginStyle";
 import { Main } from "./LoginStyle";
 import ButtonComponent from "../../Components/Button/Button";
+import LoadingContext from "../../Contexts/LoadingContext";
+import LoadingComponent from "../../Components/Loading/Loading";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const { loading, setLoading, disable, setDisable }: any =
+    useContext(LoadingContext);
 
   const [passworderror, setPasswordError] = useState(false);
   const [usernameError, setUsernameError] = useState(false);
@@ -23,14 +28,19 @@ function LoginPage() {
     if (password.length < 6) {
       setPasswordError(true);
     }
+    setDisable(true);
+    setLoading(true);
     api
       .post(`/sign-in`, { username, password })
       .then((response) => {
         localStorage.setItem("token", response.data);
+        setLoading(false);
+        setDisable(false);
         navigate("/menu");
       })
       .catch((err) => {
-        alert(err);
+        setLoading(false);
+        setDisable(false);
         console.log(err);
       });
   }
@@ -40,6 +50,7 @@ function LoginPage() {
       <Infos onClick={() => navigate("/sobre")}>
         <BsFillInfoSquareFill />
       </Infos>
+      {loading ? <LoadingComponent /> : ""}
       <Main>
         <h1>Ng.Ca$h</h1>
         <h2>Faça seu login!</h2>
@@ -57,6 +68,7 @@ function LoginPage() {
                 setUsername(e.target.value);
               }}
               value={username}
+              disabled={disable}
             />
             {usernameError ? (
               <p className="error-message">username inválido!</p>
@@ -77,6 +89,7 @@ function LoginPage() {
                 setPassword(e.target.value);
               }}
               value={password}
+              disabled={disable}
             />
             {passworderror ? (
               <>

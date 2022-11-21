@@ -6,6 +6,7 @@ import ButtonComponent from "../../Components/Button/Button";
 import HeaderComponent from "../../Components/Header/Header";
 import HideInformationContext from "../../Contexts/HideInformation";
 import UserContext from "../../Contexts/UserContext";
+import LoadingComponent from "../../Components/Loading/Loading";
 
 function MenuPage() {
   let navigate = useNavigate();
@@ -17,26 +18,30 @@ function MenuPage() {
   return (
     <div className="container black">
       <HeaderComponent />
-      <Main>
-        <div className="balance-box">
-          <h2>Meu saldo:</h2>
-          <div className="balance-value">
-            <p className={HideContext?.visibleInfo ? "" : "blur"}>
-              R$ {user === "" ? "" : Number(user.balance).toFixed(2)}
-            </p>
+      {user === "" ? (
+        <LoadingComponent />
+      ) : (
+        <Main>
+          <div className="balance-box">
+            <h2>Meu saldo:</h2>
+            <div className="balance-value">
+              <p className={HideContext?.visibleInfo ? "" : "blur"}>
+                R$ {user === "" ? "" : Number(user.balance).toFixed(2)}
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="actions-box">
-          <ButtonComponent
-            textButton="Transações"
-            function={() => navigate("/transacoes")}
-          />
-          <ButtonComponent
-            textButton="Solicitar"
-            function={() => navigate("/transacoes/nova")}
-          />
-        </div>
-      </Main>
+          <div className="actions-box">
+            <ButtonComponent
+              textButton="Transações"
+              function={() => navigate("/transacoes")}
+            />
+            <ButtonComponent
+              textButton="Solicitar"
+              function={() => navigate("/transacoes/nova")}
+            />
+          </div>
+        </Main>
+      )}
     </div>
   );
 }

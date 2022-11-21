@@ -30,45 +30,49 @@ function HeaderComponent() {
         setUser(response.data);
       })
       .catch((err) => {
-        alert(err);
-        console.log(err);
+        navigate("/");
       });
   }, []);
 
   function LogOut() {
+    localStorage.clear();
     navigate("/");
   }
 
   return (
     <>
-      <HeaderBox>
-        <div className="salutation-box">
-          <h1>NG.CASH</h1>
-          <h2 className={HideContext?.visibleInfo ? "" : "blur"}>
-            Ola,{user === "" ? "" : user.Users[0].username}
-          </h2>
-        </div>
-        <div className="date-box">
-          <h2>{today}</h2>
-          {HideContext?.visibleInfo ? (
-            <AiFillEye
-              onClick={() =>
-                HideContext.setVisibleInfo(!HideContext?.visibleInfo)
-              }
-            />
-          ) : (
-            <AiFillEyeInvisible
-              onClick={() =>
-                HideContext!.setVisibleInfo(!HideContext?.visibleInfo)
-              }
-            />
-          )}
-        </div>
-        <div className="actions-box">
-          <h2 onClick={() => navigate("/menu")}>Menu</h2>
-          <h2 onClick={() => LogOut()}>Sair</h2>
-        </div>
-      </HeaderBox>
+      {user === "" ? (
+        ""
+      ) : (
+        <HeaderBox>
+          <div className="salutation-box">
+            <h1>NG.CASH</h1>
+            <h2 className={HideContext?.visibleInfo ? "" : "blur"}>
+              Ola,{user === "" ? "" : user.Users[0].username}
+            </h2>
+          </div>
+          <div className="date-box">
+            <h2>{today}</h2>
+            {HideContext?.visibleInfo ? (
+              <AiFillEye
+                onClick={() =>
+                  HideContext.setVisibleInfo(!HideContext?.visibleInfo)
+                }
+              />
+            ) : (
+              <AiFillEyeInvisible
+                onClick={() =>
+                  HideContext!.setVisibleInfo(!HideContext?.visibleInfo)
+                }
+              />
+            )}
+          </div>
+          <div className="actions-box">
+            <h2 onClick={() => navigate("/menu")}>Menu</h2>
+            <h2 onClick={() => LogOut()}>Sair</h2>
+          </div>
+        </HeaderBox>
+      )}
     </>
   );
 }

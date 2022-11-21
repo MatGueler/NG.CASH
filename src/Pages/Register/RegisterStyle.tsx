@@ -43,6 +43,8 @@ export const Main = styled.div`
     flex-direction: column;
     align-items: center;
 
+    position: relative;
+
     .error-message {
       width: 100%;
       padding-left: 10px;
