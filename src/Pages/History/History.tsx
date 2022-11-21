@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import api from "../../Services/Api";
 
@@ -7,10 +7,14 @@ import { Legend, Main, Transaction } from "./HistoryStyle";
 import HeaderComponent from "../../Components/Header/Header";
 import FormDateComponent from "./FormDate/FormDate";
 import { config } from "../../Services/AuthHeaders";
+import LoadingComponent from "../../Components/Loading/Loading";
+import UserContext from "../../Contexts/UserContext";
 
 function HistoryPage() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+
+  const { user }: any = useContext(UserContext);
 
   const [transactions, setTransactions] = useState([]);
 
@@ -52,30 +56,34 @@ function HistoryPage() {
   return (
     <div className="container black">
       <HeaderComponent />
-      <Main>
-        <FormDateComponent
-          startDate={startDate}
-          setStartDate={setStartDate}
-          endDate={endDate}
-          setEndDate={setEndDate}
-          setTransactions={setTransactions}
-        />
-        <div className="history-box">
-          <Legend>
-            <h3>Data</h3>
-            <h3>Valor (R$)</h3>
-            <h3>Remetente</h3>
-            <h3>Destinatário</h3>
-          </Legend>
-          {transactions.length === 0 ? (
-            <p>Sem transações nesse período ou com esse filtro!</p>
-          ) : (
-            transactions.map((transaction, index) => (
-              <PutTransactions key={index} transaction={transaction} />
-            ))
-          )}
-        </div>
-      </Main>
+      {user === "" ? (
+        <LoadingComponent />
+      ) : (
+        <Main>
+          <FormDateComponent
+            startDate={startDate}
+            setStartDate={setStartDate}
+            endDate={endDate}
+            setEndDate={setEndDate}
+            setTransactions={setTransactions}
+          />
+          <div className="history-box">
+            <Legend>
+              <h3>Data</h3>
+              <h3>Valor (R$)</h3>
+              <h3>Remetente</h3>
+              <h3>Destinatário</h3>
+            </Legend>
+            {transactions.length === 0 ? (
+              <p>Sem transações nesse período ou com esse filtro!</p>
+            ) : (
+              transactions.map((transaction, index) => (
+                <PutTransactions key={index} transaction={transaction} />
+              ))
+            )}
+          </div>
+        </Main>
+      )}
     </div>
   );
 }
