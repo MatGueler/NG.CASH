@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 
 import api from "../../Services/Api";
 
@@ -10,6 +10,7 @@ import CheckMessageComponent from "../../Components/Messages/CheckMessage";
 import BadMessageComponent from "../../Components/Messages/BadMessage";
 import HideInformationContext from "../../../src/Contexts/HideInformation";
 import { config } from "../../Services/AuthHeaders";
+import UserContext from "../../Contexts/UserContext";
 
 function TransactionsPage() {
   const [transferAccount, setTransferAccount] = useState("");
@@ -18,24 +19,9 @@ function TransactionsPage() {
 
   const HideContext = useContext(HideInformationContext);
 
+  const { user }: any = useContext(UserContext);
+
   let navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/");
-    }
-    console.log("oi");
-
-    api
-      .get(`/transactions`, config(token))
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   function Transfer(event: any) {
     event.preventDefault();
@@ -43,8 +29,25 @@ function TransactionsPage() {
       transferAccount,
       value,
     });
-    setStatus(true);
-    return;
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+    }
+
+    api
+      .post(
+        `/new/transaction`,
+        { username: transferAccount, value },
+        config(token)
+      )
+      .then((response) => {
+        console.log(response);
+        setStatus(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        setStatus(false);
+      });
   }
 
   return (
@@ -68,7 +71,7 @@ function TransactionsPage() {
       )}
       <Main>
         <h2 className={HideContext?.visibleInfo ? "" : "blur"}>
-          Saldo: R$ 5000
+          Saldo: R$ {user === "" ? "" : Number(user.balance).toFixed(2)}
         </h2>
         <form onSubmit={Transfer}>
           <h1>Nova transação</h1>

@@ -22,7 +22,7 @@ function MenuPage() {
           <h2>Meu saldo:</h2>
           <div className="balance-value">
             <p className={HideContext?.visibleInfo ? "" : "blur"}>
-              R$ {user.balance}
+              R$ {user === "" ? "" : Number(user.balance).toFixed(2)}
             </p>
           </div>
         </div>
