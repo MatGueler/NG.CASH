@@ -17,12 +17,13 @@ export const Input = styled.input`
 `;
 
 export const Main = styled.div`
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 20px;
+  margin: auto 20px;
   box-sizing: border-box;
 
   padding-top: 100px;
@@ -52,6 +53,20 @@ export const Main = styled.div`
 
     border: 1px solid #ffffff;
     border-radius: 10px;
+
+    p {
+      height: 100%;
+      max-width: 60%;
+
+      display: flex;
+      align-items: center;
+
+      color: #ffffff;
+
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
   }
 `;
 
@@ -96,6 +111,10 @@ export const Transaction = styled.div`
 
   border-bottom: 1px solid #ffffff;
   border-radius: 5px 5px 0 0;
+
+  :hover {
+    background-color: #616161;
+  }
 
   h3 {
     width: 25%;

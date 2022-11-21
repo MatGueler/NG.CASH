@@ -1,42 +1,60 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+
+import api from "../../Services/Api";
 
 import { BsFillInfoSquareFill } from "react-icons/bs";
 
 import { Input } from "./RegisterStyle";
 import { Main } from "./RegisterStyle";
 import { Infos } from "../Login/LoginStyle";
-import ButtonComponent from "../../Button/Button";
+import ButtonComponent from "../../Components/Button/Button";
+import LoadingComponent from "../../Components/Loading/Loading";
+import LoadingContext from "../../Contexts/LoadingContext";
 
 function RegisterPage() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const { loading, setLoading, disable, setDisable }: any =
+    useContext(LoadingContext);
+
   const [passworderror, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
+  const [usernameError, setUsernameError] = useState(false);
 
   let navigate = useNavigate();
 
   function signUp(event: any) {
     event.preventDefault();
-    const body = {
-      email,
-      password,
-      confirmPassword,
-    };
+
     if (
-      emailError ||
+      usernameError ||
       passworderror ||
       confirmPasswordError ||
-      email === "" ||
+      username === "" ||
       password === "" ||
       confirmPassword === ""
     ) {
-      alert("Corrija os dados");
+      alert("Dados inválidos");
       return;
     }
+    setLoading(true);
+    setDisable(true);
+
+    api
+      .post(`/sign-up`, { username, password, confirmPassword })
+      .then((response) => {
+        setDisable(false);
+        setLoading(false);
+        navigate("/");
+      })
+      .catch((err) => {
+        setDisable(false);
+        setLoading(false);
+        console.log(err);
+      });
   }
 
   return (
@@ -44,29 +62,31 @@ function RegisterPage() {
       <Infos onClick={() => navigate("/sobre")}>
         <BsFillInfoSquareFill />
       </Infos>
+
       <Main>
         <h1>Ng.Ca$h</h1>
         <h2>Faça seu cadastro!</h2>
         <form onSubmit={signUp}>
+          {loading ? <LoadingComponent /> : ""}
           <div className="input-group">
             <Input
-              type="email"
-              placeholder="E-mail"
+              type="text"
+              placeholder="Username"
               onChange={(e: any) => {
-                if (
-                  !/\S+@\S+\.\S+/.test(e.target.value) &&
-                  e.target.value !== ""
-                ) {
-                  setEmailError(true);
+                if (e.target.value.length < 3 && e.target.value !== "") {
+                  setUsernameError(true);
                 } else {
-                  setEmailError(false);
+                  setUsernameError(false);
                 }
-                setEmail(e.target.value);
+                setUsername(e.target.value);
               }}
-              value={email}
+              value={username}
+              disabled={disable}
             />
-            {emailError ? (
-              <p className="error-message">O dado deve ser um email válido!</p>
+            {usernameError ? (
+              <p className="error-message">
+                Username deve possuir pelo menos 3 caracteres
+              </p>
             ) : (
               ""
             )}
@@ -85,6 +105,7 @@ function RegisterPage() {
                 setPassword(e.target.value);
               }}
               value={password}
+              disabled={disable}
             />
             {passworderror ? (
               <p className="error-message">
@@ -108,6 +129,7 @@ function RegisterPage() {
                 setConfirmPassword(e.target.value);
               }}
               value={confirmPassword}
+              disabled={disable}
             />
             {confirmPasswordError ? (
               <p className="error-message">As senhas devem ser iguais</p>

@@ -55,7 +55,14 @@ table {
 
 .container{
 	width: 100%;
-	height: 100%;
+	min-height: 100%;
+	
+	display: flex;
+	align-items: center;
+
+	padding-bottom: 30px;
+
+	box-sizing: border-box;
 }
 
 .black{
