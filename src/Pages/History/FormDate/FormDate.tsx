@@ -1,4 +1,4 @@
-import ButtonComponent from "../../../Button/Button";
+import ButtonComponent from "../../../Components/Button/Button";
 import styled from "styled-components";
 
 export default function FormDateComponent({

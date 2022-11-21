@@ -6,7 +6,7 @@ import { BsFillInfoSquareFill } from "react-icons/bs";
 import { Input } from "./RegisterStyle";
 import { Main } from "./RegisterStyle";
 import { Infos } from "../Login/LoginStyle";
-import ButtonComponent from "../../Button/Button";
+import ButtonComponent from "../../Components/Button/Button";
 
 function RegisterPage() {
   const [email, setEmail] = useState("");

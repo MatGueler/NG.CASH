@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import { Input, Legend, Main, Transaction } from "./HistoryStyle";
-import ButtonComponent from "../../Button/Button";
-import HeaderComponent from "../../Header/Header";
+import { Legend, Main, Transaction } from "./HistoryStyle";
+import HeaderComponent from "../../Components/Header/Header";
 import FormDateComponent from "./FormDate/FormDate";
 
 function HistoryPage() {

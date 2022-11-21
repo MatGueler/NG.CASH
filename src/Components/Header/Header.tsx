@@ -5,9 +5,12 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useContext, useState } from "react";
 import { IoLogOut } from "react-icons/io5";
 import HideInformationContext from "../../Contexts/HideInformation";
+import UserContext from "../../Contexts/UserContext";
 
 function HeaderComponent() {
   const HideContext = useContext(HideInformationContext);
+
+  const { user, setUser }: any = useContext(UserContext);
 
   let navigate = useNavigate();
   const today = new Date(Date.now()).toLocaleDateString("pt-BR");
@@ -22,7 +25,7 @@ function HeaderComponent() {
         <div className="salutation-box">
           <h1>NG.CASH</h1>
           <h2 className={HideContext?.visibleInfo ? "" : "blur"}>
-            Ola, Fulana(o)
+            Ola,{user === "" ? "" : user.Users[0].username}
           </h2>
         </div>
         <div className="date-box">

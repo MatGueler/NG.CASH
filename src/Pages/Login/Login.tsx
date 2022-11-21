@@ -1,30 +1,42 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+
+import api from "../../Services/Api";
 
 import { BsFillInfoSquareFill } from "react-icons/bs";
 
 import { Infos, Input } from "./LoginStyle";
 import { Main } from "./LoginStyle";
-import ButtonComponent from "../../Button/Button";
+import ButtonComponent from "../../Components/Button/Button";
+import TokenContext from "../../Contexts/UserContext";
 
 function LoginPage() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [passworderror, setPasswordError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
+  const [usernameError, setUsernameError] = useState(false);
+
+  const { setToken }: any = useContext(TokenContext);
 
   let navigate = useNavigate();
 
-  function signUp(event: any) {
+  async function signUp(event: any) {
     event.preventDefault();
-    const body = {
-      email,
-      password,
-    };
     if (password.length < 6) {
       setPasswordError(true);
     }
+    api
+      .post(`/sign-in`, { username, password })
+      .then((response) => {
+        localStorage.setItem("token", response.data);
+        setToken(response.data);
+        navigate("/menu");
+      })
+      .catch((err) => {
+        alert(err);
+        console.log(err);
+      });
   }
 
   return (
@@ -38,20 +50,20 @@ function LoginPage() {
         <form onSubmit={signUp}>
           <div className="input-group">
             <Input
-              type="email"
-              placeholder="E-mail"
+              type="text"
+              placeholder="Username"
               onChange={(e: any) => {
-                if (!/\S+@\S+\.\S+/.test(e.target.value)) {
-                  setEmailError(true);
+                if (e.target.value.length < 3) {
+                  setUsernameError(true);
                 } else {
-                  setEmailError(false);
+                  setUsernameError(false);
                 }
-                setEmail(e.target.value);
+                setUsername(e.target.value);
               }}
-              value={email}
+              value={username}
             />
-            {emailError ? (
-              <p className="error-message">O dado deve ser um email válido!</p>
+            {usernameError ? (
+              <p className="error-message">username inválido!</p>
             ) : (
               ""
             )}
@@ -71,9 +83,17 @@ function LoginPage() {
               value={password}
             />
             {passworderror ? (
-              <p className="error-message">
-                A senha deve possuir no mínimo 6 caracteres!
-              </p>
+              <>
+                <p className="error-message">
+                  A senha deve possuir no mínimo 6 caracteres!
+                </p>
+                <p className="error-message">
+                  Deve haver pelo menos um número!
+                </p>
+                <p className="error-message">
+                  Deve haver pelo menos uma letra maiúscula!
+                </p>
+              </>
             ) : (
               ""
             )}

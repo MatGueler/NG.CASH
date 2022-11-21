@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 
 import { Input, Main } from "./TransactionStyle";
-import ButtonComponent from "../../Button/Button";
-import HeaderComponent from "../../Header/Header";
-import CheckMessageComponent from "../../Messages/CheckMessage";
-import BadMessageComponent from "../../Messages/BadMessage";
-import HideInformationContext from "../../../Contexts/HideInformation";
+import ButtonComponent from "../../Components/Button/Button";
+import HeaderComponent from "../../Components/Header/Header";
+import CheckMessageComponent from "../../Components/Messages/CheckMessage";
+import BadMessageComponent from "../../Components/Messages/BadMessage";
+import HideInformationContext from "../../../src/Contexts/HideInformation";
 
 function TransactionsPage() {
   const [transferAccount, setTransferAccount] = useState("");
