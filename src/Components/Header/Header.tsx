@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { HeaderBox } from "./HeaderStyle";
 
+import api from "../../Services/Api";
+
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import { IoLogOut } from "react-icons/io5";
 import HideInformationContext from "../../Contexts/HideInformation";
 import UserContext from "../../Contexts/UserContext";
@@ -14,6 +16,24 @@ function HeaderComponent() {
 
   let navigate = useNavigate();
   const today = new Date(Date.now()).toLocaleDateString("pt-BR");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        Authorization: `Authorization ${token}`,
+      },
+    };
+    api
+      .get(`/balance`, config)
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((err) => {
+        alert(err);
+        console.log(err);
+      });
+  }, []);
 
   function LogOut() {
     navigate("/");

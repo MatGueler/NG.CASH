@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import api from "../../Services/Api";
 
 import { Input, Main } from "./TransactionStyle";
 import ButtonComponent from "../../Components/Button/Button";
@@ -7,6 +9,7 @@ import HeaderComponent from "../../Components/Header/Header";
 import CheckMessageComponent from "../../Components/Messages/CheckMessage";
 import BadMessageComponent from "../../Components/Messages/BadMessage";
 import HideInformationContext from "../../../src/Contexts/HideInformation";
+import { config } from "../../Services/AuthHeaders";
 
 function TransactionsPage() {
   const [transferAccount, setTransferAccount] = useState("");
@@ -16,6 +19,23 @@ function TransactionsPage() {
   const HideContext = useContext(HideInformationContext);
 
   let navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+    }
+    console.log("oi");
+
+    api
+      .get(`/transactions`, config(token))
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   function Transfer(event: any) {
     event.preventDefault();

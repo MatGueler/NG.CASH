@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 import api from "../../Services/Api";
 
@@ -8,7 +8,6 @@ import { BsFillInfoSquareFill } from "react-icons/bs";
 import { Infos, Input } from "./LoginStyle";
 import { Main } from "./LoginStyle";
 import ButtonComponent from "../../Components/Button/Button";
-import TokenContext from "../../Contexts/UserContext";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -16,8 +15,6 @@ function LoginPage() {
 
   const [passworderror, setPasswordError] = useState(false);
   const [usernameError, setUsernameError] = useState(false);
-
-  const { setToken }: any = useContext(TokenContext);
 
   let navigate = useNavigate();
 
@@ -30,7 +27,6 @@ function LoginPage() {
       .post(`/sign-in`, { username, password })
       .then((response) => {
         localStorage.setItem("token", response.data);
-        setToken(response.data);
         navigate("/menu");
       })
       .catch((err) => {

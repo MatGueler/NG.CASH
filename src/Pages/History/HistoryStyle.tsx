@@ -52,6 +52,20 @@ export const Main = styled.div`
 
     border: 1px solid #ffffff;
     border-radius: 10px;
+
+    p {
+      height: 100%;
+      max-width: 60%;
+
+      display: flex;
+      align-items: center;
+
+      color: #ffffff;
+
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
   }
 `;
 
