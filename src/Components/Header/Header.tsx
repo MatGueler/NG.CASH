@@ -8,6 +8,7 @@ import { useContext, useEffect } from "react";
 import { IoLogOut } from "react-icons/io5";
 import HideInformationContext from "../../Contexts/HideInformation";
 import UserContext from "../../Contexts/UserContext";
+import { config } from "../../Services/AuthHeaders";
 
 function HeaderComponent() {
   const HideContext = useContext(HideInformationContext);
@@ -19,13 +20,8 @@ function HeaderComponent() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const config = {
-      headers: {
-        Authorization: `Authorization ${token}`,
-      },
-    };
     api
-      .get(`/balance`, config)
+      .get(`/balance`, config(token))
       .then((response) => {
         setUser(response.data);
       })

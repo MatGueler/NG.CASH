@@ -10,6 +10,7 @@ import { Main } from "./LoginStyle";
 import ButtonComponent from "../../Components/Button/Button";
 import LoadingContext from "../../Contexts/LoadingContext";
 import LoadingComponent from "../../Components/Loading/Loading";
+import BadMessageComponent from "../../Components/Messages/BadMessage";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -20,12 +21,13 @@ function LoginPage() {
 
   const [passworderror, setPasswordError] = useState(false);
   const [usernameError, setUsernameError] = useState(false);
+  const [status, setStatus]: any = useState("");
 
   let navigate = useNavigate();
 
   async function signUp(event: any) {
     event.preventDefault();
-    if (password.length < 6) {
+    if (password.length < 8) {
       setPasswordError(true);
     }
     setDisable(true);
@@ -39,6 +41,7 @@ function LoginPage() {
         navigate("/menu");
       })
       .catch((err) => {
+        setStatus(false);
         setLoading(false);
         setDisable(false);
         console.log(err);
@@ -50,6 +53,14 @@ function LoginPage() {
       <Infos onClick={() => navigate("/sobre")}>
         <BsFillInfoSquareFill />
       </Infos>
+      {status !== "" && status !== true ? (
+        <BadMessageComponent
+          text="Username ou senha incorretos!"
+          setStatus={setStatus}
+        />
+      ) : (
+        ""
+      )}
       {loading ? <LoadingComponent /> : ""}
       <Main>
         <h1>Ng.Ca$h</h1>
@@ -81,7 +92,7 @@ function LoginPage() {
               type="password"
               placeholder="Senha"
               onChange={(e: any) => {
-                if (e.target.value.length < 6) {
+                if (e.target.value.length < 8) {
                   setPasswordError(true);
                 } else {
                   setPasswordError(false);
@@ -94,7 +105,7 @@ function LoginPage() {
             {passworderror ? (
               <>
                 <p className="error-message">
-                  A senha deve possuir no mínimo 6 caracteres!
+                  A senha deve possuir no mínimo 8 caracteres!
                 </p>
                 <p className="error-message">
                   Deve haver pelo menos um número!

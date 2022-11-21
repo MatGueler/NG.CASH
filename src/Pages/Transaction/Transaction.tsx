@@ -11,6 +11,7 @@ import BadMessageComponent from "../../Components/Messages/BadMessage";
 import HideInformationContext from "../../../src/Contexts/HideInformation";
 import { config } from "../../Services/AuthHeaders";
 import UserContext from "../../Contexts/UserContext";
+import LoadingComponent from "../../Components/Loading/Loading";
 
 function TransactionsPage() {
   const [transferAccount, setTransferAccount] = useState("");
@@ -19,9 +20,20 @@ function TransactionsPage() {
 
   const HideContext = useContext(HideInformationContext);
 
-  const { user }: any = useContext(UserContext);
+  const { user, setUser }: any = useContext(UserContext);
 
   let navigate = useNavigate();
+
+  function updateUser(token: string | null) {
+    api
+      .get(`/balance`, config(token))
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((err) => {
+        navigate("/");
+      });
+  }
 
   function Transfer(event: any) {
     event.preventDefault();
@@ -41,11 +53,12 @@ function TransactionsPage() {
         config(token)
       )
       .then((response) => {
-        console.log(response);
+        updateUser(token);
         setStatus(true);
+        setTransferAccount("");
+        setValue("");
       })
       .catch((err) => {
-        console.log(err);
         setStatus(false);
       });
   }
@@ -69,25 +82,31 @@ function TransactionsPage() {
       ) : (
         ""
       )}
-      <Main>
-        <h2 className={HideContext?.visibleInfo ? "" : "blur"}>
-          Saldo: R$ {user === "" ? "" : Number(user.balance).toFixed(2)}
-        </h2>
-        <form onSubmit={Transfer}>
-          <h1>Nova transação</h1>
-          <Input
-            type="text"
-            placeholder="Para quem quer transferir?"
-            onChange={(e) => setTransferAccount(e.target.value)}
-          />
-          <Input
-            type="text"
-            placeholder="Valor"
-            onChange={(e) => setValue(e.target.value)}
-          />
-          <ButtonComponent textButton="Transferir" />
-        </form>
-      </Main>
+      {user === "" ? (
+        <LoadingComponent />
+      ) : (
+        <Main>
+          <h2 className={HideContext?.visibleInfo ? "" : "blur"}>
+            Saldo: R$ {user === "" ? "" : Number(user.balance).toFixed(2)}
+          </h2>
+          <form onSubmit={Transfer}>
+            <h1>Nova transação</h1>
+            <Input
+              type="text"
+              placeholder="Para quem quer transferir?"
+              onChange={(e) => setTransferAccount(e.target.value)}
+              value={transferAccount}
+            />
+            <Input
+              type="text"
+              placeholder="Valor"
+              onChange={(e) => setValue(e.target.value)}
+              value={value}
+            />
+            <ButtonComponent textButton="Transferir" />
+          </form>
+        </Main>
+      )}
     </div>
   );
 }
