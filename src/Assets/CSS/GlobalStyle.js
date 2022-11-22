@@ -55,7 +55,7 @@ table {
 
 .container{
 	width: 100%;
-	height: 100%;
+	min-height: 100%;
 	
 	display: flex;
 	align-items: center;
@@ -64,6 +64,12 @@ table {
 
 	box-sizing: border-box;
 }
+
+  @media (min-width: 850px) {
+	.container {
+		height: 100%;
+	}
+  }
 
 .black{
 	background-color: #000000;

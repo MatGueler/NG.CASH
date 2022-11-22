@@ -141,12 +141,34 @@ export const FilteForm = styled.form`
     width: 100%;
 
     margin: 20px 0;
-
-    background-color: yellow;
   }
 
   .filter-button {
-    width: 30%;
+    width: 100%;
     box-sizing: border-box;
+  }
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+    .date-group {
+      flex-direction: column;
+
+      input {
+        height: 20px;
+        margin-bottom: 10px;
+      }
+    }
+
+    .check-group {
+      flex-direction: column;
+    }
+
+    .check-input {
+      flex-direction: column;
+    }
+
+    .input-box {
+      width: max-content;
+    }
   }
 `;

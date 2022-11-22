@@ -12,7 +12,7 @@ export const Main = styled.div`
 
   h1 {
     font-family: "Saira Stencil One", cursive;
-    font-size: 10em;
+    font-size: 8em;
     color: #000000;
 
     margin-bottom: 0.5em;
@@ -46,7 +46,28 @@ export const Main = styled.div`
       width: 50%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
+    }
+  }
+
+  @media (max-width: 950px) {
+    h1 {
+      font-size: 5em;
+    }
+
+    li {
+      font-size: 20px;
+
+      margin: 20px 0;
+    }
+  }
+
+  @media (max-width: 750px) {
+    ul {
+      width: 80%;
+    }
+    img {
+      display: none;
     }
   }
 `;

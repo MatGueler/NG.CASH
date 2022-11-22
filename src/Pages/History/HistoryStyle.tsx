@@ -76,8 +76,15 @@ export const Main = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
     overflow-y: scroll;
+  }
+
+  @media (max-width: 850px) {
+    .transactions-box {
+      min-height: 120px;
+    }
   }
 `;
 
@@ -107,6 +114,11 @@ export const Legend = styled.div`
     font-size: 18px;
 
     overflow-x: scroll;
+
+    padding: 5px;
+    box-sizing: border-box;
+
+    word-break: break-all;
   }
 `;
 
