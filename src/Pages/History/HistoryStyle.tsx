@@ -41,7 +41,7 @@ export const Main = styled.div`
 
   .history-box {
     width: 80%;
-    min-height: 60%;
+    height: 60%;
 
     display: flex;
     flex-direction: column;
@@ -67,6 +67,17 @@ export const Main = styled.div`
       font-size: 20px;
       font-weight: bold;
     }
+  }
+
+  .transactions-box {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow-y: scroll;
   }
 `;
 

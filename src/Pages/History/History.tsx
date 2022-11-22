@@ -74,13 +74,15 @@ function HistoryPage() {
               <h3>Remetente</h3>
               <h3>Destinatário</h3>
             </Legend>
-            {transactions.length === 0 ? (
-              <p>Sem transações nesse período ou com esse filtro!</p>
-            ) : (
-              transactions.map((transaction, index) => (
-                <PutTransactions key={index} transaction={transaction} />
-              ))
-            )}
+            <div className="transactions-box">
+              {transactions.length === 0 ? (
+                <p>Sem transações nesse período ou com esse filtro!</p>
+              ) : (
+                transactions.map((transaction, index) => (
+                  <PutTransactions key={index} transaction={transaction} />
+                ))
+              )}
+            </div>
           </div>
         </Main>
       )}
