@@ -58,4 +58,25 @@ export const HeaderBox = styled.div`
       cursor: pointer;
     }
   }
+
+  @media (max-width: 750px) {
+    .date-box {
+      h2 {
+        display: none;
+      }
+    }
+
+    .salutation-box {
+      width: max-content;
+      justify-content: start;
+
+      h1 {
+        display: none;
+      }
+    }
+
+    .actions-box {
+      width: max-content;
+    }
+  }
 `;

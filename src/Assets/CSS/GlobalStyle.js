@@ -65,6 +65,12 @@ table {
 	box-sizing: border-box;
 }
 
+  @media (min-width: 850px) {
+	.container {
+		height: 100%;
+	}
+  }
+
 .black{
 	background-color: #000000;
 }

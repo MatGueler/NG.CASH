@@ -87,4 +87,10 @@ export const Main = styled.div`
     display: flex;
     box-sizing: border-box;
   }
+
+  @media (max-width: 750px) {
+    .actions-box {
+      width: 100%;
+    }
+  }
 `;

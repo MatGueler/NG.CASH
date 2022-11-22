@@ -87,4 +87,20 @@ export const Main = styled.div`
   .button-box :hover {
     transform: translate(2px, 2px);
   }
+
+  @media (max-width: 750px) {
+    h1 {
+      font-size: 7em;
+    }
+
+    form {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 450px) {
+    h1 {
+      font-size: 5em;
+    }
+  }
 `;

@@ -41,7 +41,7 @@ export const Main = styled.div`
 
   .history-box {
     width: 80%;
-    min-height: 60%;
+    height: 60%;
 
     display: flex;
     flex-direction: column;
@@ -66,6 +66,24 @@ export const Main = styled.div`
       text-align: center;
       font-size: 20px;
       font-weight: bold;
+    }
+  }
+
+  .transactions-box {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    overflow-y: scroll;
+  }
+
+  @media (max-width: 850px) {
+    .transactions-box {
+      min-height: 120px;
     }
   }
 `;
@@ -96,6 +114,11 @@ export const Legend = styled.div`
     font-size: 18px;
 
     overflow-x: scroll;
+
+    padding: 5px;
+    box-sizing: border-box;
+
+    word-break: break-all;
   }
 `;
 
