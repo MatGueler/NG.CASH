@@ -6,7 +6,7 @@ html, body, #root {
 	height: 100vh;
 	margin: 0;
 	padding: 0;
-	background-color: #d9d9d9;
+	background-color: #ffffff;
 	color: #000000;
 }
 html, body, div, span, applet, object, iframe,
@@ -38,9 +38,6 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-ol, ul {
-	list-style: none;
-}
 blockquote, q {
 	quotes: none;
 }
@@ -58,13 +55,55 @@ table {
 
 .container{
 	width: 100%;
-	height: 100%;
-	position: absolute;
+	min-height: 100%;
+	
+	display: flex;
+	align-items: center;
+
+	padding-bottom: 30px;
+
+	box-sizing: border-box;
 }
+
+  @media (min-width: 850px) {
+	.container {
+		height: 100%;
+	}
+  }
 
 .black{
 	background-color: #000000;
 }
+
+.form-link {
+    color: #ffffff;
+    font-weight: bold;
+
+    margin-top: 40px;
+
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+    .button-box {
+    width: 50%;
+    height: 45px;
+    position: relative;
+    background-color: black;
+
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+
+	margin: 20px;
+  }
+
+	.button-box :hover {
+    transform: translate(2px, 2px);
+  }
+
+	.blur {
+    filter: blur(8px);
+  }
 `;
 
 export default GlobalStyle;
