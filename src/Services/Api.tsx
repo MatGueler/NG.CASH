@@ -1,8 +1,7 @@
 import axios from "axios";
-import dotenv from "dotenv";
 
 const instance = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "http://ec2-18-234-144-60.compute-1.amazonaws.com",
 });
 
 export default instance;
